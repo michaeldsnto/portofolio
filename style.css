@@ -1,0 +1,710 @@
+/* Reset CSS dan pengaturan dasar untuk body */
+@view-transition {
+    navigation:auto;
+}
+
+body {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Courier New', Courier, monospace;
+  overflow-x: hidden; /* Mencegah scroll horizontal */
+  background-color: #0f172a;
+  color: #000000;
+}
+
+/* Mengatur box-sizing untuk semua elemen */
+* {
+  box-sizing: border-box;
+}
+
+/* CSS Variables untuk mudah mengubah warna */
+:root {
+  --background-color: #0f172a;
+  --surface-color: #1e293b;
+  --text-color: #f1f5f9;
+  --primary-color: #3b82f6;
+  --secondary-color: #64748b;
+}
+
+/* Styling untuk navbar yang menempel di atas */
+.navbar {
+  position: fixed; /* Navbar tetap di atas saat scroll */
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 1000; /* Pastikan navbar di atas elemen lain */
+  padding: 15px 0;
+  background-color: rgba(15, 23, 42, 0.8); /* Background semi-transparan */
+  backdrop-filter: blur(10px); /* Efek blur transparan */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 1s ease; /* Animasi halus saat berubah */
+}
+
+/* Efek shadow saat navbar di-scroll */
+.navbar.scrolled {
+  background-color: rgba(15, 23, 42, 0.95);
+  box-shadow: 0 2px 20px rgba(0, 0, 0, 0.3);
+}
+
+/* Container untuk mengatur layout navbar */
+.nav-container {
+  max-width: 1400px;
+  margin: 0 auto; /* Center container */
+  display: flex;
+  justify-content: space-between; /* Logo di kiri, menu di kanan */
+  align-items: center;
+  padding: 0 20px;
+}
+
+/* Styling untuk logo navbar */
+.nav-logo {
+  font-size: 30px;
+  font-weight: 700;
+  text-decoration:none;
+  color: var(--text-color);
+  transition: all 0.2s ease;
+}
+
+/* Efek hover pada logo */
+.nav-logo:hover {
+  transform: scale(1.05); /* Sedikit membesar saat hover */
+  color: var(--primary-color);
+}
+
+/* Styling untuk menu navigasi */
+.nav-menu {
+  display: flex;
+  list-style: none; /* Hilangkan bullet points */
+  margin: 0;
+  padding: 0;
+  gap: 100px; /* Jarak antar menu item */
+}
+
+/* Container untuk setiap item menu */
+.nav-item {
+  position: relative;
+}
+
+/* Styling untuk link navigasi */
+.nav-link {
+  text-decoration: none; /* Hilangkan underline */
+  font-weight: 500;
+  font-size: 16px;
+  padding: 10px 0;
+  color: var(--text-color);
+  transition: all 0.3s ease; /* Animasi halus */
+  position: relative;
+}
+
+/* Garis bawah yang muncul saat hover/active */
+.nav-link::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0; /* Mulai dari lebar 0 */
+  height: 2px;
+  background-color: var(--primary-color);
+  transition: width 0.3s ease; /* Animasi lebar garis */
+}
+
+/* Efek hover dan active pada nav link */
+.nav-link:hover::after,
+.nav-link.active::after {
+  width: 100%; /* Garis melebar penuh saat hover/active */
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: var(--primary-color);
+}
+
+/* Tombol hamburger untuk mobile (tersembunyi di desktop) */
+.mobile-menu-toggle {
+  display: none; /* Tersembunyi di desktop */
+  flex-direction: column;
+  cursor: pointer;
+  padding: 5px;
+}
+
+/* Garis-garis pada hamburger menu */
+.hamburger-line {
+  width: 25px;
+  height: 3px;
+  background-color: var(--text-color);
+  margin: 3px 0;
+  transition: 0.3s; /* Animasi untuk transformasi hamburger */
+}
+
+/* Section utama (home) - halaman pembuka */
+.home-section {
+  min-height: 100vh; /* Tinggi minimal full screen */
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* Center vertikal */
+  align-items: center; /* Center horizontal */
+  padding: 120px 20px 60px; /* Padding atas lebih besar untuk navbar */
+  position: relative;
+  overflow: hidden; /* Sembunyikan elemen yang keluar */
+  background: linear-gradient(
+    135deg,
+    var(--background-color) 0%,
+    var(--surface-color) 100%
+  );
+}
+
+/* Container untuk bentuk-bentuk dekoratif yang mengambang */
+.floating-shapes {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 0; /* Di belakang konten */
+  pointer-events: none; /* Tidak bisa diklik */
+}
+
+/* Styling dasar untuk bentuk dekoratif */
+.shape {
+  position: absolute;
+  background-color: var(--primary-color);
+  opacity: 0.1; /* Transparan agar tidak mengganggu */
+  animation: float 20s infinite ease-in-out; /* Animasi mengambang */
+}
+
+/* Bentuk dekoratif pertama - lingkaran besar */
+.shape-1 {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%; /* Membuat lingkaran */
+  top: 10%;
+  left: 10%;
+  animation-delay: 0s; /* Mulai animasi langsung */
+}
+
+/* Bentuk dekoratif kedua - oval */
+.shape-2 {
+  width: 150px;
+  height: 150px;
+  border-radius: 30%; /* Bentuk oval */
+  top: 60%;
+  right: 15%;
+  animation-delay: 5s; /* Delay 5 detik */
+}
+
+/* Bentuk dekoratif ketiga - persegi rounded */
+.shape-3 {
+  width: 100px;
+  height: 100px;
+  border-radius: 20%; /* Sudut melengkung */
+  bottom: 20%;
+  left: 20%;
+  animation-delay: 10s; /* Delay 10 detik */
+}
+
+/* Animasi mengambang untuk bentuk dekoratif */
+@keyframes float {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg); /* Posisi awal */
+  }
+  50% {
+    transform: translateY(-30px) rotate(180deg); /* Naik dan berputar */
+  }
+}
+
+/* Container untuk konten utama home */
+.home-content {
+  position: relative;
+  z-index: 1; /* Di atas bentuk dekoratif */
+  text-align: center;
+  max-width: 800px; /* Batasi lebar maksimal */
+}
+
+/* Judul utama home */
+.home-title {
+  font-size: 56px;
+  font-weight: 700;
+  margin: 0 0 15px 0;
+  color: var(--text-color);
+  animation: slideInDown 0.8s ease-out; /* Animasi masuk dari atas */
+}
+
+/* Subtitle home */
+.home-subtitle {
+  font-size: 32px;
+  font-weight: 600;
+  margin: 0 0 20px 0;
+  color: var(--text-color);
+  opacity: 0.9; /* Sedikit transparan */
+  animation: slideInUp 0.8s ease-out; /* Animasi masuk dari bawah */
+}
+
+/* Deskripsi home */
+.home-description {
+  font-size: 18px;
+  line-height: 1.6; /* Jarak antar baris */
+  margin: 0 0 30px 0;
+  color: var(--text-color);
+  opacity: 0.8; /* Lebih transparan dari subtitle */
+  max-width: 600px; /* Batasi lebar untuk readability */
+  animation: slideInUp 1s ease-out; /* Animasi masuk dengan delay */
+}
+
+/* Animasi slide masuk dari atas */
+@keyframes slideInDown {
+  from {
+    opacity: 0; /* Mulai transparan */
+    transform: translateY(-30px); /* Mulai dari atas */
+  }
+  to {
+    opacity: 1; /* Menjadi opaque */
+    transform: translateY(0); /* Ke posisi normal */
+  }
+}
+
+/* Animasi slide masuk dari bawah */
+@keyframes slideInUp {
+  from {
+    opacity: 0; /* Mulai transparan */
+    transform: translateY(30px); /* Mulai dari bawah */
+  }
+  to {
+    opacity: 1; /* Menjadi opaque */
+    transform: translateY(0); /* Ke posisi normal */
+  }
+}
+
+/* Container untuk tombol-tombol CTA (Call to Action) */
+.cta-buttons {
+  display: flex;
+  gap: 20px; /* Jarak antar tombol */
+  justify-content: center; /* Center tombol */
+  flex-wrap: wrap; /* Wrap ke baris baru jika perlu */
+  margin-top: 40px;
+}
+
+/* Styling dasar untuk semua tombol */
+.btn {
+  padding: 15px 35px;
+  border: none;
+  border-radius: 50px; /* Tombol bulat */
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease; /* Animasi halus */
+  text-decoration: none; /* Hilangkan underline jika link */
+  display: inline-block;
+}
+
+/* Tombol primary (utama) */
+.btn-primary {
+  background-color: var(--primary-color);
+  color: var(--text-color);
+  box-shadow: 0 4px 15px rgba(59, 130, 246, 0.3); /* Shadow untuk depth */
+}
+
+/* Efek hover tombol primary */
+.btn-primary:hover {
+  transform: translateY(-3px); /* Naik sedikit */
+  box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4); /* Shadow lebih besar */
+  background-color: #2563eb;
+}
+
+/* Tombol secondary (kedua) */
+.btn-secondary {
+  border: 2px solid var(--secondary-color); /* Border saja, background transparan */
+  background: transparent;
+  color: var(--secondary-color);
+}
+
+/* Efek hover tombol secondary */
+.btn-secondary:hover {
+  transform: translateY(-3px); /* Naik sedikit */
+  background-color: var(--secondary-color);
+  color: var(--text-color);
+}
+
+/* Styling umum untuk semua section */
+.section {
+  padding: 80px 20px; /* Padding vertikal dan horizontal */
+  max-width: 1200px; /* Lebar maksimal konten */
+  margin: 0 auto; /* Center section */
+}
+
+/* Judul untuk setiap section */
+.section-title {
+  font-size: 42px;
+  font-weight: 700;
+  text-align: center;
+  margin-bottom: 50px;
+  color: var(--text-color);
+  position: relative;
+  display: inline-block;
+  left: 50%; /* Posisi ke tengah */
+  transform: translateX(-50%); /* Center dengan transform */
+}
+
+/* Garis bawah dekoratif pada judul section */
+.section-title::after {
+  content: "";
+  position: absolute;
+  bottom: -10px; /* Di bawah teks */
+  left: 50%;
+  transform: translateX(-50%); /* Center garis */
+  width: 60px;
+  height: 4px;
+  background-color: var(--primary-color);
+  border-radius: 2px; /* Sudut melengkung */
+}
+
+/* Container untuk section profile */
+.profile-container {
+  display: flex;
+  align-items: center; /* Align vertikal */
+  gap: 50px; /* Jarak antara gambar dan teks */
+  max-width: 900px;
+  margin: 0 auto; /* Center container */
+  padding: 40px;
+  background-color: var(--surface-color);
+  border-radius: 20px; /* Sudut melengkung */
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.2); /* Shadow halus */
+}
+
+/* Gambar profil besar di section profile */
+.profile-image-large {
+  width: 250px;
+  height: 250px;
+  border-radius: 50%; /* Bentuk lingkaran */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 120px; /* Ukuran emoji */
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15); /* Shadow */
+  animation: pulse 3s infinite; /* Animasi berkedip */
+  transition: transform 0.3s ease;
+  flex-shrink: 0; /* Tidak mengecil saat flex */
+  overflow: hidden; /* Clip gambar agar mengikuti bentuk lingkaran */
+}
+
+/* Efek hover pada gambar profil besar */
+.profile-image-large:hover {
+  transform: scale(1.05); /* Sedikit membesar */
+}
+
+/* Animasi pulse untuk gambar profil */
+@keyframes pulse {
+  0%,
+  100% {
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.15); /* Shadow normal */
+  }
+  50% {
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.25); /* Shadow lebih besar */
+  }
+}
+
+/* Container untuk informasi profil */
+.profile-info {
+  flex: 1; /* Ambil sisa ruang */
+  text-align: left; /* Align teks ke kiri */
+}
+
+/* Nama pada section profile */
+.profile-name {
+  font-size: 36px;
+  font-weight: 700;
+  margin: 0 0 10px 0;
+  color: var(--text-color);
+}
+
+/* Pekerjaan/jabatan pada section profile */
+.profile-job {
+  font-size: 20px;
+  font-weight: 500;
+  margin: 0 0 20px 0;
+  color: var(--primary-color);
+  opacity: 0.9;
+}
+
+/* Deskripsi profil */
+.profile-description {
+  font-size: 16px;
+  line-height: 1.7; /* Jarak antar baris */
+  margin: 0;
+  color: var(--text-color);
+  opacity: 0.9; /* Sedikit transparan */
+}
+
+/* Grid untuk menampilkan skill */
+.skill-grid {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(150px, 1fr)
+  ); /* Responsive grid */
+  gap: 25px; /* Jarak antar card */
+  margin-top: 40px;
+}
+
+/* Card untuk setiap skill */
+.skill-card {
+  padding: 30px 20px;
+  background-color: var(--surface-color);
+  border-radius: 15px;
+  text-align: center;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Efek hover pada skill card */
+.skill-card:hover {
+  transform: translateY(-10px); /* Naik saat hover */
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+}
+
+/* Icon untuk skill */
+.skill-icon {
+  font-size: 48px;
+  margin-bottom: 15px;
+}
+
+/* Nama skill */
+.skill-name {
+  font-size: 18px;
+  font-weight: 600;
+  color: var(--text-color);
+}
+
+/* Grid untuk menampilkan project */
+.project-grid {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(320px, 1fr)
+  ); /* Responsive grid */
+  gap: 30px; /* Jarak antar card */
+  margin-top: 40px;
+}
+
+/* Card untuk setiap project */
+.project-card {
+  background-color: var(--surface-color);
+  border-radius: 20px;
+  overflow: hidden; /* Sembunyikan overflow */
+  box-shadow: 0 5px 25px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+/* Efek hover pada project card */
+.project-card:hover {
+  transform: translateY(-10px); /* Naik saat hover */
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.2);
+}
+
+/* Gambar/foto project */
+.project-image {
+  width: 100%;
+  height: 220px;
+  background-color: var(--background-color);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden; /* Crop gambar jika terlalu besar */
+  position: relative;
+}
+
+/* Styling untuk img element dalam project */
+.project-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Crop gambar agar fit dengan container */
+  transition: transform 0.3s ease;
+}
+
+/* Efek zoom saat hover pada gambar project */
+.project-card:hover .project-image img {
+  transform: scale(1.1); /* Zoom in saat hover */
+}
+
+/* Placeholder untuk project tanpa gambar */
+.project-placeholder {
+  font-size: 80px;
+  color: var(--primary-color);
+  opacity: 0.3;
+}
+
+/* Konten project (judul dan deskripsi) */
+.project-content {
+  padding: 25px;
+}
+
+/* Judul project */
+.project-title {
+  font-size: 22px;
+  font-weight: 700;
+  margin: 0 0 15px 0;
+  color: var(--text-color);
+}
+
+/* Deskripsi project */
+.project-description {
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--text-color);
+  opacity: 0.8;
+  margin: 0;
+}
+
+/* Container untuk section contact */
+.contact-container {
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+/* Container untuk informasi kontak */
+.contact-info {
+  display: flex;
+  flex-direction: column;
+  gap: 25px; /* Jarak antar item kontak */
+  margin-top: 40px;
+}
+
+/* Item kontak individual */
+.contact-item {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px; /* Jarak antara icon dan teks */
+  padding: 20px;
+  background-color: var(--surface-color);
+  border-radius: 15px;
+  transition: all 0.3s ease;
+  box-shadow: 0 3px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* Efek hover pada contact item */
+.contact-item:hover {
+  transform: translateX(10px); /* Geser ke kanan saat hover */
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Icon kontak */
+.contact-icon {
+  font-size: 32px;
+}
+
+/* Teks kontak */
+.contact-text {
+  font-size: 18px;
+  font-weight: 500;
+  color: var(--text-color);
+}
+
+/* Footer styling */
+.footer {
+  background-color: var(--surface-color);
+  text-align: center;
+  padding: 40px 20px;
+  font-size: 16px;
+  color: var(--text-color);
+  opacity: 0.7;
+}
+
+/* Media queries untuk responsive design */
+@media (max-width: 768px) {
+  /* Mobile menu styling */
+  .nav-menu {
+    position: fixed;
+    top: 70px;
+    left: -100%; /* Tersembunyi di kiri */
+    width: 100%;
+    height: calc(100% - 70px);
+    background-color: rgba(15, 23, 42, 0.95);
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+    padding-top: 50px;
+    transition: left 0.3s ease; /* Animasi slide */
+    backdrop-filter: blur(10px);
+  }
+
+  /* Menu aktif (terlihat) */
+  .nav-menu.active {
+    left: 0; /* Slide masuk dari kiri */
+  }
+
+  /* Jarak antar menu item di mobile */
+  .nav-menu li {
+    margin: 20px 0;
+  }
+
+  /* Tampilkan hamburger menu di mobile */
+  .mobile-menu-toggle {
+    display: flex;
+  }
+
+  /* Animasi hamburger menjadi X saat aktif */
+  .mobile-menu-toggle.active .hamburger-line:nth-child(1) {
+    transform: rotate(45deg) translate(6px, 6px);
+  }
+
+  .mobile-menu-toggle.active .hamburger-line:nth-child(2) {
+    opacity: 0; /* Garis tengah hilang */
+  }
+
+  .mobile-menu-toggle.active .hamburger-line:nth-child(3) {
+    transform: rotate(-45deg) translate(6px, -6px);
+  }
+
+  /* Responsive text sizes */
+  .home-title {
+    font-size: 36px;
+  }
+
+  .home-subtitle {
+    font-size: 24px;
+  }
+
+  .home-description {
+    font-size: 16px;
+  }
+
+  .section-title {
+    font-size: 32px;
+  }
+
+  /* Profile container responsive */
+  .profile-container {
+    flex-direction: column; /* Stack vertikal di mobile */
+    text-align: center;
+    gap: 30px;
+    padding: 30px 20px;
+  }
+
+  .profile-image-large {
+    width: 200px;
+    height: 200px;
+    font-size: 100px;
+  }
+
+  .profile-info {
+    text-align: center; /* Center text di mobile */
+  }
+
+  .profile-name {
+    font-size: 28px;
+  }
+
+  .profile-job {
+    font-size: 18px;
+  }
+
+  /* project grid menjadi single column di mobile */
+  .project-grid {
+    grid-template-columns: 1fr;
+  }
+}

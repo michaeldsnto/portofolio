@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Portofolio</title>
+    <script src="https://cdn.tailwindcss.com" type="text/javascript"></script>
+    <script src="script.js"></script>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <!-- Navigation Menu Bar -->
+    <nav class="navbar" id="navbar">
+      <div class="nav-container">
+        <a href="#home" class="nav-logo">Portofolio</a>
+        <ul class="nav-menu" id="nav-menu">
+          <li class="nav-item"><a href="#home" class="nav-link">Home</a></li>
+          <li class="nav-item">
+            <a href="#profile" class="nav-link">Profile</a>
+          </li>
+          <li class="nav-item"><a href="#skill" class="nav-link">Skill</a></li>
+          <li class="nav-item">
+            <a href="#project" class="nav-link">Project</a>
+          </li>
+          <li class="nav-item">
+            <a href="#contact" class="nav-link">Contact</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <!-- Home Section -->
+    <section class="home-section" id="home">
+      <div class="home-content">
+        <h1 class="home-title">Selamat Datang</h1>
+        <h2 class="home-subtitle">di Website Portofolio Saya</h2>
+        <p class="home-description">
+          Terimakasih telah mengunjungi portofolio saya. Di sini Anda dapat
+          melihat berbagai proyek dan karya yang telah saya buat. Saya berharap
+          dapat berkolaborasi dengan Anda dalam menciptakan sesuatu yang luar
+          biasa.
+        </p>
+        <div class="cta-buttons">
+          <a href="#profile" class="btn btn-primary">Kenali Saya</a
+          ><a href="#project" class="btn btn-secondary">Lihat Proyek</a>
+        </div>
+      </div>
+    </section>
+    <!-- Profile Section -->
+    <section class="section" id="profile">
+      <h2 class="section-title">Profile</h2>
+      <div class="profile-container">
+        <div class="profile-image-large">
+          <img
+            src="images/profile.jpg"
+            alt="Foto Profil"
+            onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'profile-placeholder\'>?</div>';"
+          />
+        </div>
+        <div class="profile-info">
+          <h3 class="profile-name">Michael Angelius Desanto</h3>
+          <p class="profile-job">Web Developer</p>
+          <p class="profile-description">
+            Saya merupakan web developer dan terbuka untuk berkolaborasi dengan
+            anda dalam proyek-proyek menarik ke depannya.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Skill Section -->
+    <section class="section" id="skill">
+      <h2 class="section-title">Skill</h2>
+      <div class="skill-grid">
+        <div class="skill-card">
+          <div class="skill-icon">🔴</div>
+          <div class="skill-name">Laravel</div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-icon">🐘</div>
+          <div class="skill-name">PHP</div>
+        </div>
+        <div class="skill-card">
+          <div class="skill-icon">🗄️</div>
+          <div class="skill-name">MySQL</div>
+        </div>
+      </div>
+    </section>
+    <!-- Project Section -->
+    <section class="section" id="project">
+      <h2 class="section-title">Project</h2>
+      <div class="project-grid">
+        <div class="project-card">
+          <div class="project-image">
+            <img src="images/MyCars.png" alt="MyCars" />
+          </div>
+          <div class="project-content">
+            <h3 class="project-title">MyCars</h3>
+            <p class="project-description">
+              Website penjualan mobil yang dapat membantu pelanggan dalam
+              memilih mobil dengan bantuan fitur prediksi harga dan juga
+              membandingkan mobil dengan perhitungan AHP.
+            </p>
+          </div>
+        </div>
+        <div class="project-card">
+          <div class="project-image">
+            <img src="images/inventory_system.png" alt="Inventory system" />
+          </div>
+          <div class="project-content">
+            <h3 class="project-title">Inventory Management</h3>
+            <p class="project-description">
+              Aplikasi manajemen inventaris berbasis web dengan fitur laporan
+              penjualan dan pembelian serta mengelola data karyawan.
+            </p>
+          </div>
+        </div>
+        <div class="project-card">
+          <div class="project-image">
+            <img src="images/Portofolio.png" alt="Portofolio" />
+          </div>
+          <div class="project-content">
+            <h3 class="project-title">Website Portofolio</h3>
+            <p class="project-description">
+              Website Portofolio Pribadi yang dibuat dengan menggunakan HTML,
+              CSS, Javascript.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <!-- Contact Section -->
+    <section class="section" id="contact">
+        <h2 class="section-title">Contact</h2>
+        <div class="contact-container">
+            <div class="contact-info">
+                <div class="contact-item">
+                    <div class="contact-icon">📧</div>
+                    <div class="contact-text">michaeldesanto80@gmail.com</div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">🐙</div>
+                    <div class="contact-text">github.com/michaeldsnto</div>
+                </div>
+                <div class="contact-item">
+                    <div class="contact-icon">🔗</div>
+                    <div class="contact-text">linkedin.com/in/michaeldsnto</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <footer class="footer">
+        <p>© 2025 Portofolio Copyright.</p>
+    </footer>
+  </body>
+</html>
