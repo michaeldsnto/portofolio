@@ -1,10 +1,8 @@
-/* Tunggu hingga DOM fully loaded sebelum menjalankan kode yang mengakses elemen */
 document.addEventListener("DOMContentLoaded", () => {
-  /* Ambil elemen-elemen yang diperlukan */
   const navbar = document.getElementById("navbar");
-  const mobileMenuToggle = document.getElementById("mobile-menu-toggle");
   const navMenu = document.getElementById("nav-menu");
   const navLinks = document.querySelectorAll(".nav-link");
+  const hamburger = document.getElementById("hamburger");
 
   /* Efek scroll untuk navbar - menambah shadow saat scroll */
   window.addEventListener("scroll", () => {
@@ -15,49 +13,36 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  /*  Toggle mobile menu - buka/tutup menu hamburger */
-  if (mobileMenuToggle) {
-    mobileMenuToggle.addEventListener("click", () => {
-      mobileMenuToggle.classList.toggle("active");
-      navMenu.classList.toggle("active");
-    });
-  }
-
-  /* Tutup mobile menu saat mengklik link navigasi */
-  navLinks.forEach((link) => {
-    link.addEventListener("click", () => {
-      if (mobileMenuToggle) {
-        mobileMenuToggle.classList.remove("active");
-        navMenu.classList.remove("active");
-      }
-    });
-  });
-
-  /*  Fungsi untuk update link aktif berdasarkan scroll position */
+  /* Fungsi untuk update link aktif menggunakan IntersectionObserver */
   function updateActiveLink() {
     const sections = document.querySelectorAll("section[id]");
-    const scrollPos = window.scrollY + 100; /* Offset untuk navbar*/
+    const observerOptions = {
+      root: null,
+      rootMargin: "-80px 0px -50% 0px", // Navbar offset dan threshold 50%
+      threshold: 0,
+    };
 
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const currentId = entry.target.getAttribute("id");
+          navLinks.forEach((link) => {
+            link.classList.remove("active");
+            if (link.getAttribute("href") === `#${currentId}`) {
+              link.classList.add("active");
+            }
+          });
+        }
+      });
+    }, observerOptions);
+
+    // Observe semua sections
     sections.forEach((section) => {
-      const sectionTop = section.offsetTop;
-      const sectionHeight = section.offsetHeight;
-      const sectionId = section.getAttribute("id");
-
-      /* Cek apakah scroll position berada di dalam section ini*/
-      if (scrollPos >= sectionTop && scrollPos < sectionTop + sectionHeight) {
-        navLinks.forEach((link) => {
-          link.classList.remove("active");
-          /* Tambah class active pada link yang sesuai*/
-          if (link.getAttribute("href") === `#${sectionId}`) {
-            link.classList.add("active");
-          }
-        });
-      }
+      observer.observe(section);
     });
   }
 
-  /* Jalankan fungsi updateActiveLink saat scroll*/
-  window.addEventListener("scroll", updateActiveLink);
+  updateActiveLink();
 
   /* Enhanced smooth scrolling untuk navigasi*/
   document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
@@ -66,7 +51,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const target = document.querySelector(this.getAttribute("href"));
 
       if (target) {
-        const offsetTop = target.offsetTop - 80; /* Offset untuk navbar*/
+        const offsetTop = target.offsetTop - 80; 
 
         /* Custom smooth scroll dengan durasi yang lebih panjang*/
         const startPosition = window.pageYOffset;
@@ -99,9 +84,20 @@ document.addEventListener("DOMContentLoaded", () => {
           return (-c / 2) * (t * (t - 2) - 1) + b;
         }
 
-        /* Mulai animasi*/
         requestAnimationFrame(animation);
       }
+    });
+  });
+
+  hamburger.addEventListener("click", () => {
+    hamburger.classList.toggle("active");
+    navMenu.classList.toggle("active");
+  });
+
+  navLinks.forEach((link) => {
+    link.addEventListener("click", () => {
+      hamburger.classList.remove("active");
+      navMenu.classList.remove("active");
     });
   });
 });
