@@ -33,7 +33,7 @@ body {
   left: 0;
   right: 0;
   z-index: 1000; /* Pastikan navbar di atas elemen lain */
-  padding: 15px 0;
+  padding: 19px 0;
   background-color: rgba(15, 23, 42, 0.8); /* Background semi-transparan */
   backdrop-filter: blur(10px); /* Efek blur transparan */
   border-bottom: 1px solid rgba(255, 255, 255, 0.1);
@@ -77,7 +77,7 @@ body {
   list-style: none; /* Hilangkan bullet points */
   margin: 0;
   padding: 0;
-  gap: 100px; /* Jarak antar menu item */
+  gap: 60px; /* Jarak antar menu item */
 }
 
 /* Container untuk setiap item menu */
@@ -640,7 +640,7 @@ body {
     top: 80px; /* Di bawah navbar */
     left: -100%; /* Sembunyikan di kiri */
     width: 250px; /* Lebar sidebar */
-    height: calc(100vh - 80px); /* Tinggi penuh minus navbar */
+    height: 101vh; /* Tinggi penuh minus navbar */
     background-color: var(--surface-color);
     flex-direction: column;
     align-items: flex-start;
